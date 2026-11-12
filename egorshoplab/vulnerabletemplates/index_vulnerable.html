@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Егор Шоп</title>
+</head>
+
+<h2>Оставить отзыв</h2>
+
+<form action="/reviews" method="post">
+    <p>
+        <input type="text" name="author"
+               placeholder="Ваше имя" required>
+    </p>
+    <p>
+        <textarea name="text"
+                  placeholder="Ваш отзыв" required></textarea>
+    </p>
+    <button type="submit">Отправить</button>
+</form>
+
+<h2>Отзывы</h2>
+
+{% for review in reviews %}
+    <div>
+        <strong>{{ review["author"] }}</strong>
+        <p>{{ review["text"] | safe }}</p>
+    </div>
+{% endfor %}
+
+<body>
+    <h1>Егор Шоп</h1>
+    <p>Добро пожаловать в наш магазин!</p>
+
+    <h2>Товары</h2>
+
+    <form action="/" method="get">
+    <input type="text" name="q" placeholder="Название товара">
+    <button type="submit">Найти</button>
+</form>
+
+    <ul>
+    {% for product in products %}
+        <li>{{ product["name"] }} — {{ product["price"] }} ₽</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
